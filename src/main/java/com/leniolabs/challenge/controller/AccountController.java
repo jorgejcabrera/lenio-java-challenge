@@ -2,6 +2,7 @@ package com.leniolabs.challenge.controller;
 
 import com.leniolabs.challenge.calculator.FeeCalculatorIF;
 import com.leniolabs.challenge.calculator.factory.FeeCalculatorFactory;
+import com.leniolabs.challenge.controller.exception.AccountNotFoundException;
 import com.leniolabs.challenge.model.Account;
 import com.leniolabs.challenge.service.AccountServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class AccountController {
 
     @GetMapping(value = "/calculate-fee/{accountId}")
     public ResponseEntity<Double> calculateFee(@PathVariable String accountId) throws Exception {
-        Account account = accountControllerService.findById(accountId).orElseThrow(() -> new RuntimeException("Account not found"));
+        Account account = accountControllerService.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
         FeeCalculatorIF calculator = feeCalculatorFactory.getCalculator(account.getAccountType());
         Double fee = calculator.calculateFee();
         return ResponseEntity.ok(fee);
