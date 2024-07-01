@@ -4,7 +4,7 @@ import com.leniolabs.challenge.model.Account;
 
 import java.util.Optional;
 
-public interface AccounServiceIF {
+public interface AccountServiceIF {
 
     public String createAccount(Account account);
 

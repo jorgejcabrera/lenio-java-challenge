@@ -3,12 +3,10 @@ package com.leniolabs.challenge.controller;
 import com.leniolabs.challenge.calculator.FeeCalculatorIF;
 import com.leniolabs.challenge.calculator.factory.FeeCalculatorFactory;
 import com.leniolabs.challenge.model.Account;
-import com.leniolabs.challenge.service.AccounServiceIF;
+import com.leniolabs.challenge.service.AccountServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController
@@ -16,7 +14,7 @@ import java.util.Optional;
 public class AccountController {
 
     @Autowired
-    private AccounServiceIF accountControllerService;
+    private AccountServiceIF accountControllerService;
 
     @Autowired
     private FeeCalculatorFactory feeCalculatorFactory;
